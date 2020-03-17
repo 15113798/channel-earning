@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   title: 开发平台
 
-basePath: /renren-fast
+basePath: /channel_interface
 
 schemes:
   - http
@@ -31,6 +31,27 @@ paths:
           in: query
           type: string
           required: true
+
+  /taobao/getGoods:
+    get:
+      tags:
+        - 公共接口
+      summary: 调用淘宝接口获取商品信息
+      produces:
+        - application/json
+      parameters:
+        - name: url
+          description: 淘宝url
+          in: query
+          type: string
+          required: true
+      responses:
+          '200':
+            schema:
+              $ref: '#/definitions/Login'
+
+
+
   /sys/login:
     post:
       tags:
@@ -1015,32 +1036,32 @@ paths:
 #定义数据模型
 definitions:
   R:
-      type: object
-      properties:
-        code:
-          description: 状态码 0：成功  非0：失败
-          type: integer
-          format: int32
-        msg:
-          description: 失败原因
-          type: string
+    type: object
+    properties:
+      code:
+        description: 状态码 0：成功  非0：失败
+        type: integer
+        format: int32
+      msg:
+        description: 失败原因
+        type: string
   Login:
-      type: object
-      properties:
-        code:
-          description: 状态码 0：成功  非0：失败
-          type: integer
-          format: int32
-        token:
-          description: token
-          type: string
-        expire:
-          description: 过期时长
-          type: integer
-          format: int32
-        msg:
-          description: 失败原因
-          type: string
+    type: object
+    properties:
+      code:
+        description: 状态码 0：成功  非0：失败
+        type: integer
+        format: int32
+      token:
+        description: token
+        type: string
+      expire:
+        description: 过期时长
+        type: integer
+        format: int32
+      msg:
+        description: 失败原因
+        type: string
   LoginForm:
     type: object
     properties:
@@ -1133,34 +1154,34 @@ definitions:
             items:
               $ref: '#/definitions/SysUserEntity'
   SysUserEntityEdit:
-      type: object
-      properties:
-        userId:
-          description: 用户ID
-          type: integer
-          format: int64
-        username:
-          description: 用户名
-          type: string
-        password:
-          description: 密码
-          type: string
-        email:
-          description: 邮箱
-          type: string
-        mobile:
-          description: 手机号
-          type: string
-        status:
-          description: 状态  0：禁用   1：正常
+    type: object
+    properties:
+      userId:
+        description: 用户ID
+        type: integer
+        format: int64
+      username:
+        description: 用户名
+        type: string
+      password:
+        description: 密码
+        type: string
+      email:
+        description: 邮箱
+        type: string
+      mobile:
+        description: 手机号
+        type: string
+      status:
+        description: 状态  0：禁用   1：正常
+        type: integer
+        format: int32
+      roleIdList:
+        description: 角色ID列表
+        type: array
+        items:
           type: integer
           format: int32
-        roleIdList:
-          description: 角色ID列表
-          type: array
-          items:
-            type: integer
-            format: int32
 
   SysRoleEntity:
     type: object
@@ -1523,18 +1544,18 @@ definitions:
         description: 腾讯云COS所属地区
         type: string
   FileUpload:
-      type: object
-      properties:
-        code:
-          description: 状态码 0：成功  非0：失败
-          type: integer
-          format: int32
-        url:
-          description: 文件URL地址
-          type: string
-        msg:
-          description: 失败原因
-          type: string
+    type: object
+    properties:
+      code:
+        description: 状态码 0：成功  非0：失败
+        type: integer
+        format: int32
+      url:
+        description: 文件URL地址
+        type: string
+      msg:
+        description: 失败原因
+        type: string
 
   ScheduleJobEntity:
     type: object
