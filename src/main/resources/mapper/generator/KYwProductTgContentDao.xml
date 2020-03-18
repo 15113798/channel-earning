@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.KYwProductTgContentDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.generator.entity.KYwProductTgContentEntity" id="kYwProductTgContentMap">
+        <result property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="tgTypeId" column="tg_type_id"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="content" column="content"/>
+    </resultMap>
+
+
+</mapper>
