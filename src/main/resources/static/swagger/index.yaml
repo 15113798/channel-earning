@@ -119,6 +119,30 @@ paths:
             $ref: '#/definitions/R'
 
 
+  #首页
+  /homePage/getMenu:
+    post:
+      tags:
+        - 首页管理
+      summary: 获取顶部或底部导航栏
+      produces:
+        - application/json
+      parameters:
+        - name: type
+          description: 1顶部2底部
+          in: query
+          type: integer
+          required: true
+        - name: pid
+          description: 父级id，顶级用0
+          in: query
+          type: integer
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
 
 
   /taobao/getGoods:
