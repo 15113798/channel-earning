@@ -45,6 +45,9 @@ public interface SysUserService extends IService<SysUserEntity> {
 	 * 保存用户
 	 */
 	void saveUser(SysUserEntity user);
+
+
+	void registerUser(SysUserEntity user);
 	
 	/**
 	 * 修改用户
@@ -63,4 +66,7 @@ public interface SysUserService extends IService<SysUserEntity> {
 	 * @param newPassword  新密码
 	 */
 	boolean updatePassword(Long userId, String password, String newPassword);
+
+
+
 }

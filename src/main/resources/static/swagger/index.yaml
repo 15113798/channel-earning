@@ -21,8 +21,8 @@ paths:
   /captcha.jpg:
     get:
       tags:
-        - 用户登录
-      summary: 获取验证码
+        - 用户管理
+      summary: 获取图形验证码
       produces:
         - application/octet-stream
       parameters:
@@ -31,6 +31,77 @@ paths:
           in: query
           type: string
           required: true
+
+  /sys/login:
+    post:
+      tags:
+        - 用户管理
+      summary: 用户登录
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          description: 管理员对象
+          in: body
+          type: string
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Login'
+
+
+  /sys/user/register:
+    post:
+      tags:
+        - 用户管理
+      summary: 用户注册
+      produces:
+        - application/json
+      parameters:
+        - name: mobile
+          description: 手机号码
+          type: string
+          in: query
+          required: true
+        - name: ver_code
+          description: 验证码
+          type: string
+          in: query
+          required: true
+        - name: password
+          description: 密码
+          type: string
+          in: query
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
+
+  /sys/user/verUserName:
+    post:
+      tags:
+        - 用户管理
+      summary: 用户注册时验证用户名（手机号码）
+      produces:
+        - application/json
+      parameters:
+        - name: mobile
+          description: 手机号码
+          type: string
+          in: query
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
+
+
 
   /taobao/getGoods:
     get:
@@ -44,28 +115,6 @@ paths:
           description: 淘宝url
           in: query
           type: string
-          required: true
-      responses:
-          '200':
-            schema:
-              $ref: '#/definitions/Login'
-
-
-
-  /sys/login:
-    post:
-      tags:
-        - 用户登录
-      summary: 用户登录
-      produces:
-        - application/json
-      parameters:
-        - name: body
-          description: 管理员对象
-          in: body
-          type: string
-          schema:
-            $ref: '#/definitions/LoginForm'
           required: true
       responses:
         '200':

@@ -92,6 +92,22 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 		sysUserRoleService.saveOrUpdate(user.getUserId(), user.getRoleIdList());
 	}
 
+
+
+	@Override
+	public void registerUser(SysUserEntity user) {
+		user.setCreateTime(new Date());
+		//sha256加密
+		String salt = RandomStringUtils.randomAlphanumeric(20);
+		user.setPassword(new Sha256Hash(user.getPassword(), salt).toHex());
+		user.setSalt(salt);
+		user.setAccount(user.getMobile());
+		user.setUsername(user.getMobile());
+
+		this.save(user);
+
+	}
+
 	@Override
 	@Transactional
 	public void update(SysUserEntity user) {

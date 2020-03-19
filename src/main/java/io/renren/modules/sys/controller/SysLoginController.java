@@ -8,13 +8,19 @@
 
 package io.renren.modules.sys.controller;
 
+import io.renren.common.annotation.SysLog;
+import io.renren.common.em.NoticeTypeEnum;
+import io.renren.common.utils.NoticeUtil;
 import io.renren.common.utils.R;
+import io.renren.common.validator.ValidatorUtils;
+import io.renren.common.validator.group.AddGroup;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.form.SysLoginForm;
 import io.renren.modules.sys.service.SysCaptchaService;
 import io.renren.modules.sys.service.SysUserService;
 import io.renren.modules.sys.service.SysUserTokenService;
 import org.apache.commons.io.IOUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -96,5 +102,44 @@ public class SysLoginController extends AbstractController {
 		sysUserTokenService.logout(getUserId());
 		return R.ok();
 	}
+
+
+
+
+	@PostMapping("/sys/user/register")
+	public R register(String ver_code,String mobile,String password){
+		//前端传手机号码，密码以及验证码到后台
+		//首先验证验证码
+		// TODO: 2020/3/18 校验验证码
+		boolean var_bool = NoticeUtil.checkVerCode(mobile,ver_code, NoticeTypeEnum.Register.getCode());
+		if(!var_bool){
+			return R.error("验证码不正确，请重新输入");
+		}
+		SysUserEntity checkUser = sysUserService.queryByUserName(mobile);
+		if(checkUser != null){
+			return R.error("该用户已经注册");
+		}
+
+		SysUserEntity user = new SysUserEntity();
+		user.setMobile(mobile);
+		user.setPassword(password);
+		sysUserService.registerUser(user);
+
+		return R.ok();
+	}
+
+
+
+	@PostMapping("/sys/user/verUserName")
+	public R verUserName(String mobile){
+		SysUserEntity checkUser = sysUserService.queryByUserName(mobile);
+		if(checkUser != null){
+			return R.error("该用户已经注册");
+		}
+		return R.ok();
+	}
+
+
+
 	
 }

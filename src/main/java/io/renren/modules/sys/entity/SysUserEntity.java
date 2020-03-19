@@ -30,61 +30,166 @@ import java.util.List;
 @TableName("sys_user")
 public class SysUserEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
-	 * 用户ID
+	 *
 	 */
 	@TableId
 	private Long userId;
-
 	/**
-	 * 用户名
+	 * 用户账号
 	 */
-	@NotBlank(message="用户名不能为空", groups = {AddGroup.class, UpdateGroup.class})
-	private String username;
-
+	private String account;
 	/**
 	 * 密码
 	 */
-	@NotBlank(message="密码不能为空", groups = AddGroup.class)
 	private String password;
-
 	/**
-	 * 盐
+	 * QQ号
 	 */
-	private String salt;
-
+	private String qqNum;
+	/**
+	 * 微信号
+	 */
+	private String weixinNum;
 	/**
 	 * 邮箱
 	 */
-	@NotBlank(message="邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
-	@Email(message="邮箱格式不正确", groups = {AddGroup.class, UpdateGroup.class})
 	private String email;
-
 	/**
-	 * 手机号
+	 * 身份证号码
+	 */
+	private String idCard;
+	/**
+	 * 电话号码
 	 */
 	private String mobile;
-
 	/**
-	 * 状态  0：禁用   1：正常
+	 * 真实姓名
+	 */
+	private String reallyName;
+	/**
+	 * 地址省级编码
+	 */
+	private String adressProvince;
+	/**
+	 * 地址市级编码
+	 */
+	private String adressCity;
+	/**
+	 * 地址县级编码
+	 */
+	private String adressArea;
+	/**
+	 * 详细地址
+	 */
+	private String adressDetailed;
+	/**
+	 * 工作类型
+	 */
+	private Integer workTypeId;
+	/**
+	 * 工作性质1全职2兼职
+	 */
+	private Integer workNature;
+	/**
+	 * 用户简介
+	 */
+	private String info;
+	/**
+	 * 工作单位
+	 */
+	private String unitName;
+	/**
+	 * 用户头像地址
+	 */
+	private String headImg;
+	/**
+	 * 性别；0=不明，1=男，2=女
+	 */
+	private Integer sex;
+	/**
+	 * 推广收入区间id
+	 */
+	private Integer tgIncomeId;
+	/**
+	 * 推广领域id,多项用逗号分隔
+	 */
+	private Integer tgAreaId;
+	/**
+	 * 用户等级；初始值为0
+	 */
+	private Integer level;
+	/**
+	 * 用户经验，不可以扣除，和用户等级关联；来源于发布产品等
+	 */
+	private Integer exp;
+	/**
+	 * 用户积分；来源于用户操作，可以进行积分兑换产品等
+	 */
+	private Integer point;
+	/**
+	 * 用户虚拟货币数
+	 */
+	private Integer coin;
+	/**
+	 * 用户金币，充值用
+	 */
+	private Integer money;
+	/**
+	 * 登陆次数
+	 */
+	private Integer loginNum;
+	/**
+	 * 上次登录时间
+	 */
+	private Date lastLoginTime;
+	/**
+	 * 当前登录时间
+	 */
+	private Date currentLoginTime;
+	/**
+	 * 第一次注册完后登陆时间
+	 */
+	private Date fristLoginTime;
+	/**
+	 * 第一次注册时间
+	 */
+	private Date fristRegisterTime;
+	/**
+	 * 用户活性标记；0=未认证，1=认证成功，2=暂时冻结；3=永久性冻结
 	 */
 	private Integer status;
-
+	/**
+	 * 冻结开始时间
+	 */
+	private Date freezeStartTime;
+	/**
+	 * 冻结结束时间
+	 */
+	private Date freezeEndTime;
+	/**
+	 * 用户名称
+	 */
+	private String username;
+	/**
+	 * 加盐
+	 */
+	private String salt;
+	/**
+	 *
+	 */
+	private Long createUserId;
+	/**
+	 *
+	 */
+	private Date createTime;
 	/**
 	 * 角色ID列表
 	 */
 	@TableField(exist=false)
 	private List<Long> roleIdList;
 
-	/**
-	 * 创建者ID
-	 */
-	private Long createUserId;
-
-	/**
-	 * 创建时间
-	 */
-	private Date createTime;
+	private String ver_code;
 
 }
