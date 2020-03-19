@@ -12,9 +12,11 @@ import io.renren.common.annotation.SysLog;
 import io.renren.common.em.NoticeTypeEnum;
 import io.renren.common.utils.NoticeUtil;
 import io.renren.common.utils.R;
+import io.renren.common.validator.Assert;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.common.validator.group.AddGroup;
 import io.renren.modules.sys.entity.SysUserEntity;
+import io.renren.modules.sys.form.PasswordForm;
 import io.renren.modules.sys.form.SysLoginForm;
 import io.renren.modules.sys.service.SysCaptchaService;
 import io.renren.modules.sys.service.SysUserService;
@@ -138,6 +140,34 @@ public class SysLoginController extends AbstractController {
 		}
 		return R.ok();
 	}
+
+
+	@PostMapping("/sys/user/resetPassword")
+	public R password(@RequestBody PasswordForm form){
+		Assert.isBlank(form.getMobile(), "用户电话不为能空");
+		Assert.isBlank(form.getNewPassword(), "新密码不为能空");
+
+		//拿到电话号码获取到用户的基本信息
+		SysUserEntity entity = sysUserService.queryByUserName(form.getMobile());
+		Assert.isNull(entity, "不存在该用户");
+
+		//sha256加密
+		String password = new Sha256Hash(form.getPassword(), entity.getSalt()).toHex();
+		//sha256加密
+		String newPassword = new Sha256Hash(form.getNewPassword(), entity.getSalt()).toHex();
+
+		//更新密码
+		boolean flag = sysUserService.updatePassword(entity.getUserId(), password, newPassword);
+		if(!flag){
+			return R.error("原密码不正确");
+		}
+
+		return R.ok();
+	}
+
+
+
+
 
 
 

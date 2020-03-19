@@ -17,6 +17,8 @@ import lombok.Data;
  */
 @Data
 public class PasswordForm {
+
+    private String mobile;
     /**
      * 原密码
      */

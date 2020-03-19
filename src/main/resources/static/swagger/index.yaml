@@ -98,7 +98,25 @@ paths:
         '200':
           schema:
             $ref: '#/definitions/R'
-
+  /sys/user/resetPassword:
+    post:
+      tags:
+        - 用户管理
+      summary: 修改密码
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          description: 管理员对象
+          in: body
+          type: string
+          schema:
+            $ref: '#/definitions/PasswordForm'
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
 
 
 
@@ -1129,6 +1147,9 @@ definitions:
   PasswordForm:
     type: object
     properties:
+      mobile:
+        description: 用户电话
+        type: string
       password:
         description: 原密码
         type: string
