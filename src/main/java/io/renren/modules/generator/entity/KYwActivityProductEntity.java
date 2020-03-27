@@ -12,11 +12,11 @@ import lombok.Data;
  * 
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2020-03-27 13:18:34
+ * @date 2020-03-27 13:21:34
  */
 @Data
-@TableName("k_yw_product_action")
-public class KYwProductActionEntity implements Serializable {
+@TableName("k_yw_activity_product")
+public class KYwActivityProductEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -27,26 +27,10 @@ public class KYwProductActionEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private String name;
+	private Integer activityId;
 	/**
-	 * logo图
+	 * 
 	 */
-	private String logo;
-	/**
-	 * 活动说明
-	 */
-	private String activityDesc;
-	/**
-	 * 开始时间
-	 */
-	private Date startTime;
-	/**
-	 * 结束时间
-	 */
-	private Date endTime;
-	/**
-	 * 排序
-	 */
-	private String sort;
+	private Integer productId;
 
 }

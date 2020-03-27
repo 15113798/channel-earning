@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.renren.modules.generator.entity.KYwProductActionEntity;
-import io.renren.modules.generator.service.KYwProductActionService;
+import io.renren.modules.generator.entity.KYwActivityProductEntity;
+import io.renren.modules.generator.service.KYwActivityProductService;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.R;
 
@@ -23,21 +23,21 @@ import io.renren.common.utils.R;
  *
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2020-03-27 13:18:34
+ * @date 2020-03-27 13:21:34
  */
 @RestController
-@RequestMapping("generator/kywproductaction")
-public class KYwProductActionController {
+@RequestMapping("generator/kywactivityproduct")
+public class KYwActivityProductController {
     @Autowired
-    private KYwProductActionService kYwProductActionService;
+    private KYwActivityProductService kYwActivityProductService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("generator:kywproductaction:list")
+    @RequiresPermissions("generator:kywactivityproduct:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = kYwProductActionService.queryPage(params);
+        PageUtils page = kYwActivityProductService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -47,20 +47,20 @@ public class KYwProductActionController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    @RequiresPermissions("generator:kywproductaction:info")
+    @RequiresPermissions("generator:kywactivityproduct:info")
     public R info(@PathVariable("id") Integer id){
-		KYwProductActionEntity kYwProductAction = kYwProductActionService.getById(id);
+		KYwActivityProductEntity kYwActivityProduct = kYwActivityProductService.getById(id);
 
-        return R.ok().put("kYwProductAction", kYwProductAction);
+        return R.ok().put("kYwActivityProduct", kYwActivityProduct);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("generator:kywproductaction:save")
-    public R save(@RequestBody KYwProductActionEntity kYwProductAction){
-		kYwProductActionService.save(kYwProductAction);
+    @RequiresPermissions("generator:kywactivityproduct:save")
+    public R save(@RequestBody KYwActivityProductEntity kYwActivityProduct){
+		kYwActivityProductService.save(kYwActivityProduct);
 
         return R.ok();
     }
@@ -69,9 +69,9 @@ public class KYwProductActionController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("generator:kywproductaction:update")
-    public R update(@RequestBody KYwProductActionEntity kYwProductAction){
-		kYwProductActionService.updateById(kYwProductAction);
+    @RequiresPermissions("generator:kywactivityproduct:update")
+    public R update(@RequestBody KYwActivityProductEntity kYwActivityProduct){
+		kYwActivityProductService.updateById(kYwActivityProduct);
 
         return R.ok();
     }
@@ -80,9 +80,9 @@ public class KYwProductActionController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("generator:kywproductaction:delete")
+    @RequiresPermissions("generator:kywactivityproduct:delete")
     public R delete(@RequestBody Integer[] ids){
-		kYwProductActionService.removeByIds(Arrays.asList(ids));
+		kYwActivityProductService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

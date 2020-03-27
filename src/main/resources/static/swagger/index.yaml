@@ -119,29 +119,8 @@ paths:
             $ref: '#/definitions/R'
 
 
-  #选品库
-  #商品分类
-  /product/category/getColumn:
-    post:
-      tags:
-        - 商品管理
-      summary: 获取商品分类栏目
-      produces:
-        - application/json
-      parameters:
-        - name: parent_id
-          description: 父级id，顶级用0。目前没有二级分类，只有顶级分类。写死0
-          in: query
-          type: integer
-          required: true
-      responses:
-        '200':
-          schema:
-            $ref: '#/definitions/R'
 
-
-
-  #选品库
+  #首页
   /homePage/getMenu:
     post:
       tags:
@@ -164,6 +143,30 @@ paths:
         '200':
           schema:
             $ref: '#/definitions/R'
+
+
+
+  #商品管理
+  #商品栏目分类
+  /product/category/getColumn:
+    post:
+      tags:
+        - 商品管理
+      summary: 获取商品分类栏目
+      produces:
+        - application/json
+      parameters:
+        - name: parent_id
+          description: 父级id，顶级用0。目前没有二级分类，只有顶级分类。写死0
+          in: query
+          type: integer
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
 
 
 
