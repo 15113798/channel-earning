@@ -146,18 +146,65 @@ paths:
 
 
 
-  #商品管理
+  #选品库管理
   #商品栏目分类
   /product/category/getColumn:
     post:
       tags:
-        - 商品管理
+        - 选品库管理
       summary: 获取商品分类栏目
       produces:
         - application/json
       parameters:
         - name: parent_id
           description: 父级id，顶级用0。目前没有二级分类，只有顶级分类。写死0
+          in: query
+          type: integer
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
+  #选品库管理
+  #活动专区信息
+  /act/getAreaInfo:
+    post:
+      tags:
+        - 选品库管理
+      summary: 获取活动专区信息
+      produces:
+        - application/json
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
+
+  #选品库管理
+  #活动专区商品集合信息
+  /act/getActProduct:
+    post:
+      tags:
+        - 选品库管理
+      summary: 获取活动专区信息
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          description: 活动专区id
+          in: query
+          type: integer
+          required: true
+        - name: page
+          description: 页码
+          in: query
+          type: integer
+          required: true
+        - name: limit
+          description: 每页条数
           in: query
           type: integer
           required: true

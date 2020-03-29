@@ -12,7 +12,7 @@ import lombok.Data;
  * 
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2020-03-18 15:00:32
+ * @date 2020-03-29 13:56:38
  */
 @Data
 @TableName("k_yw_product_category")
