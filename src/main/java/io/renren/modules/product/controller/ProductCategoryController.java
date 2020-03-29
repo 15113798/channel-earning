@@ -39,11 +39,9 @@ public class ProductCategoryController extends AbstractController {
 
 
     @PostMapping("/getColumn")
-    public R getMenu(Integer parent_id) {
+    public R getColumn(Integer parent_id) {
         //传入type，然后获取到该类型的所有菜单信息。并且按照排序
-        Map map = new HashMap<String,Object>();
-        map.put("parent_id",parent_id);
-        List<KYwProductCategoryEntity> data = kYwProductCategoryService.listByMap(map);
+        List<KYwProductCategoryEntity> data = kYwProductCategoryService.listByParentId(parent_id);
 
         return R.ok().put("data", data);
     }

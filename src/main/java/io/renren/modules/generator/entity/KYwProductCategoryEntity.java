@@ -33,4 +33,6 @@ public class KYwProductCategoryEntity implements Serializable {
 	 */
 	private String name;
 
+	private Integer sort;
+
 }
