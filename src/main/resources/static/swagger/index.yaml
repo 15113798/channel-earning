@@ -173,7 +173,7 @@ paths:
     post:
       tags:
         - 选品库管理
-      summary: 获取活动专区信息
+      summary: 获取活动专区列表
       produces:
         - application/json
       responses:
@@ -189,7 +189,7 @@ paths:
     post:
       tags:
         - 选品库管理
-      summary: 获取活动专区信息
+      summary: 根据专区id获取专区商品信息
       produces:
         - application/json
       parameters:
