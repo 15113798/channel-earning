@@ -185,7 +185,7 @@ paths:
 
   #选品库管理
   #活动专区商品集合信息
-  /act/getActProduct:
+  /act/getActProductList:
     post:
       tags:
         - 选品库管理
@@ -193,7 +193,7 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: id
+        - name: actId
           description: 活动专区id
           in: query
           type: integer

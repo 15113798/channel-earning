@@ -4,6 +4,9 @@ import io.renren.modules.generator.entity.KYwProductEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 
  * 
@@ -13,5 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface KYwProductDao extends BaseMapper<KYwProductEntity> {
-	
+
+     List<KYwProductEntity> findProByActId(Map<String, Object> params);
 }

@@ -22,7 +22,7 @@ import io.renren.modules.generator.service.KYwProductService;
 public class KYwProductServiceImpl extends ServiceImpl<KYwProductDao, KYwProductEntity> implements KYwProductService {
 
     @Autowired
-    private KYwProductCategoryDao dao;
+    private KYwProductDao dao;
 
 
     @Override
@@ -35,9 +35,15 @@ public class KYwProductServiceImpl extends ServiceImpl<KYwProductDao, KYwProduct
         return new PageUtils(page);
     }
 
-
-    public List<KYwProductCategoryEntity> listByParentId(Integer parentId){
-        return dao.listByParentId(parentId);
+    @Override
+    public List<KYwProductEntity> findProByActId(Map<String, Object> params) {
+        return dao.findProByActId(params);
     }
+
+
+
+
+
+
 
 }

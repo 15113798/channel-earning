@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.KYwProductDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.generator.entity.KYwProductEntity" id="kYwProductMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="shopId" column="shop_id"/>
+        <result property="shopName" column="shop_name"/>
+        <result property="yongjinTypeId" column="yongjin_type_id"/>
+        <result property="publicUserId" column="public_user_id"/>
+        <result property="actionTypeId" column="action_type_id"/>
+        <result property="actionName" column="action_name"/>
+        <result property="title" column="title"/>
+        <result property="productLink" column="product_link"/>
+        <result property="daogouText" column="daogou_text"/>
+        <result property="originImg" column="origin_img"/>
+        <result property="adImg" column="ad_img"/>
+        <result property="shortAdImg" column="short_ad_img"/>
+        <result property="yingxiaoImg" column="yingxiao_img"/>
+        <result property="productType" column="product_type"/>
+        <result property="coponLink" column="copon_link"/>
+        <result property="coponEndTime" column="copon_end_time"/>
+        <result property="totalCoponCount" column="total_copon_count"/>
+        <result property="taobaoPrice" column="taobao_price"/>
+        <result property="juanmianPrice" column="juanmian_price"/>
+        <result property="juanmianAfterPrice" column="juanmian_after_price"/>
+        <result property="yongjinRate" column="yongjin_rate"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="state" column="state"/>
+        <result property="isRecommend" column="is_recommend"/>
+        <result property="upTime" column="up_time"/>
+        <result property="downTime" column="down_time"/>
+        <result property="isverify" column="isVerify"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <select id="findProByActId" resultMap="kYwProductMap" parameterType="java.util.Map">
+        select * from k_yw_product t
+        LEFT JOIN k_yw_activity_product t1 on t.id = t1.product_id
+        where t1.activity_id = #{actId}
+        limit #{startLimit}, #{limit};
+    </select>
+
+
+</mapper>
