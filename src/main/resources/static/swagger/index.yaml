@@ -217,6 +217,8 @@ paths:
 
 
 
+
+
   /taobao/getGoods:
     get:
       tags:
@@ -234,6 +236,31 @@ paths:
         '200':
           schema:
             $ref: '#/definitions/Login'
+
+
+
+
+
+
+
+  #数据接口
+  #首页运营数据接口
+  /data/getHPOperateData:
+    post:
+      tags:
+        - 数据接口管理
+      summary: 获取首页运营数据接口
+      produces:
+        - application/json
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
+
+
+
 
   /sys/user/list:
     get:
@@ -1252,6 +1279,25 @@ definitions:
       newPassword:
         description: 新密码
         type: string
+
+
+  HPOperateDataEntity:
+    type: object
+    properties:
+      operationTime:
+        description: 稳定运行时间
+        type: string
+      dailyActivity:
+        description: 日活淘客数
+        type: string
+      serviceProNum:
+        description: 服务商家数
+        type: string
+
+
+
+
+
   SysUserEntity:
     type: object
     properties:
