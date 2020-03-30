@@ -6,8 +6,11 @@
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="io.renren.modules.generator.entity.KYwCommentEntity" id="kYwCommentMap">
         <result property="id" column="id"/>
-        <result property="productId" column="product_id"/>
         <result property="type" column="type"/>
+        <result property="questionType" column="question_type"/>
+        <result property="attPict" column="att_pict"/>
+        <result property="contactInfo" column="contact_info"/>
+        <result property="productId" column="product_id"/>
         <result property="commentUserId" column="comment_user_id"/>
         <result property="commentContent" column="comment_content"/>
         <result property="commentTime" column="comment_time"/>

@@ -12,7 +12,7 @@ import lombok.Data;
  * 
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2020-03-18 14:58:38
+ * @date 2020-03-30 15:10:25
  */
 @Data
 @TableName("k_yw_comment")
@@ -25,13 +25,25 @@ public class KYwCommentEntity implements Serializable {
 	@TableId
 	private Integer id;
 	/**
+	 * 类型1首页意见反馈2纠错
+	 */
+	private Integer type;
+	/**
+	 * 问题类型
+	 */
+	private Integer questionType;
+	/**
+	 * 附件图片
+	 */
+	private String attPict;
+	/**
+	 * 联系方式
+	 */
+	private String contactInfo;
+	/**
 	 * 商品id
 	 */
 	private Integer productId;
-	/**
-	 * 类型1评论2反馈
-	 */
-	private Integer type;
 	/**
 	 * 评论人
 	 */

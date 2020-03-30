@@ -259,6 +259,21 @@ paths:
 
 
 
+  #意见反馈接口
+  /feedback/count:
+    post:
+      tags:
+        - 意见反馈管理
+      summary: 获取意见反馈条数
+      produces:
+        - application/json
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
+
 
 
 
