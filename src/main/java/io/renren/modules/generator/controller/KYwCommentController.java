@@ -60,7 +60,10 @@ public class KYwCommentController {
     @RequestMapping("/save")
     @RequiresPermissions("generator:kywcomment:save")
     public R save(@RequestBody KYwCommentEntity kYwComment){
+
+
 		kYwCommentService.save(kYwComment);
+
 
         return R.ok();
     }

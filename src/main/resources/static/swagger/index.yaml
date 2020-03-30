@@ -264,9 +264,77 @@ paths:
     post:
       tags:
         - 意见反馈管理
-      summary: 获取意见反馈条数
+      summary: 首页-获取意见反馈条数
       produces:
         - application/json
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
+  /feedback/save:
+    post:
+      tags:
+        - 意见反馈管理
+      summary: 增加意见反馈
+      produces:
+        - application/json
+      parameters:
+        - name: type
+          description: 评论反馈表示1为意见反馈 2为纠错
+          in: query
+          type: Integer
+          required: true
+        - name: question_type
+          description: 评论类型，枚举定义。问后台要
+          in: query
+          type: Integer
+          required: true
+        - name: commentContent
+          description: 问题描述
+          in: query
+          type: string
+          required: true
+        - name: attPict
+          description: 附件路径
+          in: query
+          type: string
+          required: true
+        - name: contactInfo
+          description: 联系方式
+          in: query
+          type: string
+          required: true
+        - name: commentUserId
+          description: 登录人用户id
+          in: query
+          type: Integer
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
+  /feedback/findFeedList:
+    post:
+      tags:
+        - 意见反馈管理
+      summary: 查询反馈记录
+      produces:
+        - application/json
+      parameters:
+        - name: state
+          description: 状态 1尚未受理2受理中3受理完成
+          in: query
+          type: Integer
+          required: false
+        - name: commentUserId
+          description: 评论人id
+          in: query
+          type: Integer
+          required: true
       responses:
         '200':
           schema:

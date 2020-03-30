@@ -17,6 +17,7 @@
         <result property="replyUserId" column="reply_user_id"/>
         <result property="replyContent" column="reply_content"/>
         <result property="replyTime" column="reply_time"/>
+        <result property="state" column="state"/>
     </resultMap>
 
 
