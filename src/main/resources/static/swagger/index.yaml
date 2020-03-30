@@ -344,6 +344,46 @@ paths:
 
 
 
+  /notice/getList:
+    post:
+      tags:
+        - 公告管理
+      summary: 公告列表
+      produces:
+        - application/json
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          type: integer
+          required: true
+        - name: limit
+          description: 每页条数
+          in: query
+          type: integer
+          required: true
+        - name: sidx
+          description: 排序字段,用create_time
+          in: query
+          type: string
+          required: true
+        - name: order
+          description: 排序方式，如：asc倒序、desc倒序
+          in: query
+          type: string
+        - name: title
+          description: 模糊查询标题
+          in: query
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
+
+
+
 
   /sys/user/list:
     get:

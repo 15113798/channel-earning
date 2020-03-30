@@ -18,11 +18,18 @@ public class KYwNoticeServiceImpl extends ServiceImpl<KYwNoticeDao, KYwNoticeEnt
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<KYwNoticeEntity> page = this.page(
-                new Query<KYwNoticeEntity>().getPage(params),
-                new QueryWrapper<KYwNoticeEntity>()
-        );
-
+        IPage<KYwNoticeEntity> page ;
+        if(params.get("title") != null){
+            page = this.page(
+                    new Query<KYwNoticeEntity>().getPage(params),
+                    new QueryWrapper<KYwNoticeEntity>().like("title",params.get("title"))
+            );
+        }else{
+            page = this.page(
+                    new Query<KYwNoticeEntity>().getPage(params),
+                    new QueryWrapper<KYwNoticeEntity>()
+            );
+        }
         return new PageUtils(page);
     }
 
