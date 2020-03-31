@@ -12,7 +12,7 @@ import lombok.Data;
  * 
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2020-03-18 15:00:32
+ * @date 2020-03-31 15:38:28
  */
 @Data
 @TableName("k_yw_brand")
@@ -25,45 +25,29 @@ public class KYwBrandEntity implements Serializable {
 	@TableId
 	private Integer id;
 	/**
-	 * 店铺名称
+	 * 品牌名称
 	 */
-	private String name;
+	private String brandName;
 	/**
-	 * 店铺链接
+	 * 品牌小标题
 	 */
-	private String shopUrl;
+	private String brandTitle;
 	/**
-	 * 品牌分类id
+	 * 品牌历史
 	 */
-	private Integer brandTypeId;
+	private String brandHistory;
 	/**
-	 * logo路径
+	 * 品牌定位
 	 */
-	private String logoUrl;
+	private String brandPosition;
 	/**
-	 * 主题图片路径
+	 * 消费群体
 	 */
-	private String themeUrl;
+	private String consumer;
 	/**
-	 * 活动开始时间
+	 * 品牌标签
 	 */
-	private Date activityStartTime;
-	/**
-	 * 活动结束时间
-	 */
-	private Date activityEndTime;
-	/**
-	 * 活动类型
-	 */
-	private Integer activityType;
-	/**
-	 * 活动说明
-	 */
-	private String activityRemark;
-	/**
-	 * 上架时间
-	 */
-	private Date upperTime;
+	private String brandLabel;
 	/**
 	 * 是否推荐
 	 */
@@ -72,6 +56,10 @@ public class KYwBrandEntity implements Serializable {
 	 * 创建时间
 	 */
 	private Date createTime;
+	/**
+	 * 创建人
+	 */
+	private Integer createId;
 	/**
 	 * 状态1审核中2审核失败3审核成功4上架5下架6删除
 	 */

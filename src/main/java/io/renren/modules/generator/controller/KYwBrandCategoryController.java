@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.renren.modules.generator.entity.KYwBrandEntity;
-import io.renren.modules.generator.service.KYwBrandService;
+import io.renren.modules.generator.entity.KYwBrandCategoryEntity;
+import io.renren.modules.generator.service.KYwBrandCategoryService;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.R;
 
@@ -26,18 +26,18 @@ import io.renren.common.utils.R;
  * @date 2020-03-31 15:38:28
  */
 @RestController
-@RequestMapping("generator/kywbrand")
-public class KYwBrandController {
+@RequestMapping("generator/kywbrandcategory")
+public class KYwBrandCategoryController {
     @Autowired
-    private KYwBrandService kYwBrandService;
+    private KYwBrandCategoryService kYwBrandCategoryService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("generator:kywbrand:list")
+    @RequiresPermissions("generator:kywbrandcategory:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = kYwBrandService.queryPage(params);
+        PageUtils page = kYwBrandCategoryService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -47,20 +47,20 @@ public class KYwBrandController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    @RequiresPermissions("generator:kywbrand:info")
+    @RequiresPermissions("generator:kywbrandcategory:info")
     public R info(@PathVariable("id") Integer id){
-		KYwBrandEntity kYwBrand = kYwBrandService.getById(id);
+		KYwBrandCategoryEntity kYwBrandCategory = kYwBrandCategoryService.getById(id);
 
-        return R.ok().put("kYwBrand", kYwBrand);
+        return R.ok().put("kYwBrandCategory", kYwBrandCategory);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("generator:kywbrand:save")
-    public R save(@RequestBody KYwBrandEntity kYwBrand){
-		kYwBrandService.save(kYwBrand);
+    @RequiresPermissions("generator:kywbrandcategory:save")
+    public R save(@RequestBody KYwBrandCategoryEntity kYwBrandCategory){
+		kYwBrandCategoryService.save(kYwBrandCategory);
 
         return R.ok();
     }
@@ -69,9 +69,9 @@ public class KYwBrandController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("generator:kywbrand:update")
-    public R update(@RequestBody KYwBrandEntity kYwBrand){
-		kYwBrandService.updateById(kYwBrand);
+    @RequiresPermissions("generator:kywbrandcategory:update")
+    public R update(@RequestBody KYwBrandCategoryEntity kYwBrandCategory){
+		kYwBrandCategoryService.updateById(kYwBrandCategory);
 
         return R.ok();
     }
@@ -80,9 +80,9 @@ public class KYwBrandController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("generator:kywbrand:delete")
+    @RequiresPermissions("generator:kywbrandcategory:delete")
     public R delete(@RequestBody Integer[] ids){
-		kYwBrandService.removeByIds(Arrays.asList(ids));
+		kYwBrandCategoryService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }
