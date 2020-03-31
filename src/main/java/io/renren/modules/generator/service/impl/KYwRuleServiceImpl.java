@@ -1,5 +1,6 @@
 package io.renren.modules.generator.service.impl;
 
+import io.renren.modules.generator.entity.KYwNoticeEntity;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -18,10 +19,19 @@ public class KYwRuleServiceImpl extends ServiceImpl<KYwRuleDao, KYwRuleEntity> i
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<KYwRuleEntity> page = this.page(
-                new Query<KYwRuleEntity>().getPage(params),
-                new QueryWrapper<KYwRuleEntity>()
-        );
+
+        IPage<KYwRuleEntity> page ;
+        if(params.get("title") != null){
+            page = this.page(
+                    new Query<KYwRuleEntity>().getPage(params),
+                    new QueryWrapper<KYwRuleEntity>().like("title",params.get("title"))
+            );
+        }else{
+            page = this.page(
+                    new Query<KYwRuleEntity>().getPage(params),
+                    new QueryWrapper<KYwRuleEntity>()
+            );
+        }
 
         return new PageUtils(page);
     }
