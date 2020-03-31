@@ -1,5 +1,8 @@
 package io.renren.common.em;
 
+
+
+//消息发送枚举
 public enum  NoticeTypeEnum {
     Register("注册","1"),
     Reset_Password("重置密码","2");

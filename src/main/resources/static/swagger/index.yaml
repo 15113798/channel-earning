@@ -420,6 +420,36 @@ paths:
 
 
 
+  /billBoard/getList:
+    post:
+      tags:
+        - 榜单管理 TODO
+      summary: 榜单商品列表 TODO
+      produces:
+        - application/json
+      parameters:
+        - name: page
+          description: 页码
+          in: query
+          type: integer
+          required: true
+        - name: limit
+          description: 每页条数
+          in: query
+          type: integer
+          required: true
+        - name: type
+          description: 榜单类型 1.综合榜单 2.实时销量榜 3.全天销量榜 4.热推榜 5.买家热搜榜 6.复购榜
+          in: query
+          type: string
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+
+
+
 
 
 

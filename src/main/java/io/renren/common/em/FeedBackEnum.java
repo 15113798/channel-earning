@@ -1,5 +1,7 @@
 package io.renren.common.em;
 
+
+//反馈问题枚举
 public enum FeedBackEnum {
     Commodity("商品库相关问题","1"),
     OpenPlatform("开放平台相关问题","2"),

@@ -1,14 +1,15 @@
 package io.renren.common.em;
 
 
+//榜单枚举
+public enum BillboardTypeEnum {
+    multipleList("综合榜单","1"),
+    RealTimeList("实时销量榜","2"),
+    AllDayList("全天销量榜","3"),
+    HotPushList("热推榜","4"),
+    HotBuyList("买家热搜榜","5"),
+    DuplicateList("复购榜","6");
 
-//纠错枚举
-public enum ErrorCorTypeEnum {
-    PriceNo("价格不对/优惠券异常","1"),
-    CommissionNo("佣金不对/计划取消","2"),
-    CommodiInf("商品劣质/虚假/不发货","3"),
-    OtherAno("其他异常","4"),
-    ListCor("榜单纠错","5");
 
 
     //中文名称
@@ -16,7 +17,7 @@ public enum ErrorCorTypeEnum {
     //编码
     private String code;
 
-    private ErrorCorTypeEnum(String name, String code) {
+    private BillboardTypeEnum(String name, String code) {
         this.name = name;
         this.code = code;
     }
@@ -25,8 +26,8 @@ public enum ErrorCorTypeEnum {
         return name;
     }
 
-    public static ErrorCorTypeEnum getEnum(String code) {
-        for (ErrorCorTypeEnum emu : ErrorCorTypeEnum.values()) {
+    public static BillboardTypeEnum getEnum(String code) {
+        for (BillboardTypeEnum emu : BillboardTypeEnum.values()) {
             if (emu.code.equals(code)) {
                 return emu;
             }
