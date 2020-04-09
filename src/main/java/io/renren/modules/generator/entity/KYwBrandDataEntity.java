@@ -3,6 +3,7 @@ package io.renren.modules.generator.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.math.BigDecimal;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
@@ -12,11 +13,11 @@ import lombok.Data;
  * 
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2020-04-09 23:27:09
+ * @date 2020-03-31 16:25:15
  */
 @Data
-@TableName("k_yw_send_sms_history")
-public class KYwSendSmsHistoryEntity implements Serializable {
+@TableName("k_yw_brand_data")
+public class KYwBrandDataEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,24 +26,20 @@ public class KYwSendSmsHistoryEntity implements Serializable {
 	@TableId
 	private Integer id;
 	/**
-	 * 
+	 * 品牌id
 	 */
-	private Integer userId;
+	private Integer brandId;
 	/**
-	 * 发送电话号码
+	 * 近期销量
 	 */
-	private String phone;
+	private Integer recentSales;
 	/**
-	 * 发送类型
+	 * 品牌指数
 	 */
-	private Integer sendType;
+	private BigDecimal brandIndex;
 	/**
-	 * 发送时间
+	 * 粉丝数
 	 */
-	private Date sendTime;
-	/**
-	 * 验证码
-	 */
-	private String verCode;
+	private Integer fansNum;
 
 }

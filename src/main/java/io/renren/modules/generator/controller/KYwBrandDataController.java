@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.renren.modules.generator.entity.KYwSendSmsHistoryEntity;
-import io.renren.modules.generator.service.KYwSendSmsHistoryService;
+import io.renren.modules.generator.entity.KYwBrandDataEntity;
+import io.renren.modules.generator.service.KYwBrandDataService;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.R;
 
@@ -23,21 +23,21 @@ import io.renren.common.utils.R;
  *
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2020-04-09 23:27:09
+ * @date 2020-03-31 16:25:15
  */
 @RestController
-@RequestMapping("generator/kywsendsmshistory")
-public class KYwSendSmsHistoryController {
+@RequestMapping("generator/kywbranddata")
+public class KYwBrandDataController {
     @Autowired
-    private KYwSendSmsHistoryService kYwSendSmsHistoryService;
+    private KYwBrandDataService kYwBrandDataService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("generator:kywsendsmshistory:list")
+    @RequiresPermissions("generator:kywbranddata:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = kYwSendSmsHistoryService.queryPage(params);
+        PageUtils page = kYwBrandDataService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -47,20 +47,20 @@ public class KYwSendSmsHistoryController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    @RequiresPermissions("generator:kywsendsmshistory:info")
+    @RequiresPermissions("generator:kywbranddata:info")
     public R info(@PathVariable("id") Integer id){
-		KYwSendSmsHistoryEntity kYwSendSmsHistory = kYwSendSmsHistoryService.getById(id);
+		KYwBrandDataEntity kYwBrandData = kYwBrandDataService.getById(id);
 
-        return R.ok().put("kYwSendSmsHistory", kYwSendSmsHistory);
+        return R.ok().put("kYwBrandData", kYwBrandData);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("generator:kywsendsmshistory:save")
-    public R save(@RequestBody KYwSendSmsHistoryEntity kYwSendSmsHistory){
-		kYwSendSmsHistoryService.save(kYwSendSmsHistory);
+    @RequiresPermissions("generator:kywbranddata:save")
+    public R save(@RequestBody KYwBrandDataEntity kYwBrandData){
+		kYwBrandDataService.save(kYwBrandData);
 
         return R.ok();
     }
@@ -69,9 +69,9 @@ public class KYwSendSmsHistoryController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("generator:kywsendsmshistory:update")
-    public R update(@RequestBody KYwSendSmsHistoryEntity kYwSendSmsHistory){
-		kYwSendSmsHistoryService.updateById(kYwSendSmsHistory);
+    @RequiresPermissions("generator:kywbranddata:update")
+    public R update(@RequestBody KYwBrandDataEntity kYwBrandData){
+		kYwBrandDataService.updateById(kYwBrandData);
 
         return R.ok();
     }
@@ -80,9 +80,9 @@ public class KYwSendSmsHistoryController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("generator:kywsendsmshistory:delete")
+    @RequiresPermissions("generator:kywbranddata:delete")
     public R delete(@RequestBody Integer[] ids){
-		kYwSendSmsHistoryService.removeByIds(Arrays.asList(ids));
+		kYwBrandDataService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

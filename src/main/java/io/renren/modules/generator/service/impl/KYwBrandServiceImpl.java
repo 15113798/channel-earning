@@ -18,10 +18,18 @@ public class KYwBrandServiceImpl extends ServiceImpl<KYwBrandDao, KYwBrandEntity
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<KYwBrandEntity> page = this.page(
-                new Query<KYwBrandEntity>().getPage(params),
-                new QueryWrapper<KYwBrandEntity>()
-        );
+        IPage<KYwBrandEntity> page;
+        if(Integer.parseInt(String.valueOf(params.get("is_recommend"))) == 1){
+            page = this.page(
+                    new Query<KYwBrandEntity>().getPage(params),
+                    new QueryWrapper<KYwBrandEntity>().eq("is_recommend","1").eq("state","2")
+            );
+        }else{
+            page = this.page(
+                    new Query<KYwBrandEntity>().getPage(params),
+                    new QueryWrapper<KYwBrandEntity>().orderByDesc("create_time").eq("state","2")
+            );
+        }
 
         return new PageUtils(page);
     }

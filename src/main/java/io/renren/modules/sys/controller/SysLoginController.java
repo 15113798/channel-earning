@@ -15,6 +15,8 @@ import io.renren.common.utils.R;
 import io.renren.common.validator.Assert;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.common.validator.group.AddGroup;
+import io.renren.modules.generator.entity.KYwSendSmsHistoryEntity;
+import io.renren.modules.generator.service.KYwSendSmsHistoryService;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.form.PasswordForm;
 import io.renren.modules.sys.form.SysLoginForm;
@@ -35,6 +37,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -50,6 +53,9 @@ public class SysLoginController extends AbstractController {
 	private SysUserTokenService sysUserTokenService;
 	@Autowired
 	private SysCaptchaService sysCaptchaService;
+	@Autowired
+	private KYwSendSmsHistoryService sendSmsHistoryService;
+
 
 	/**
 	 * 验证码
@@ -72,10 +78,6 @@ public class SysLoginController extends AbstractController {
 	 */
 	@PostMapping("/sys/login")
 	public Map<String, Object> login(@RequestBody SysLoginForm form)throws IOException {
-		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
-		if(!captcha){
-			return R.error("验证码不正确");
-		}
 
 		//用户信息
 		SysUserEntity user = sysUserService.queryByUserName(form.getUsername());
@@ -83,11 +85,6 @@ public class SysLoginController extends AbstractController {
 		//账号不存在、密码错误
 		if(user == null || !user.getPassword().equals(new Sha256Hash(form.getPassword(), user.getSalt()).toHex())) {
 			return R.error("账号或密码不正确");
-		}
-
-		//账号锁定
-		if(user.getStatus() == 0){
-			return R.error("账号已被锁定,请联系管理员");
 		}
 
 		//生成token，并保存到数据库
@@ -125,8 +122,11 @@ public class SysLoginController extends AbstractController {
 		SysUserEntity user = new SysUserEntity();
 		user.setMobile(mobile);
 		user.setPassword(password);
+		user.setUsername(mobile);
+		user.setAccount(mobile);
+		user.setStatus(0);
+		user.setFristRegisterTime(new Date());
 		sysUserService.registerUser(user);
-
 		return R.ok();
 	}
 
@@ -161,6 +161,24 @@ public class SysLoginController extends AbstractController {
 		if(!flag){
 			return R.error("原密码不正确");
 		}
+
+		return R.ok();
+	}
+
+
+
+
+	// TODO
+	@PostMapping("/sys/user/sendNotice")
+	public R sendNotice(String mobile,String type){
+		KYwSendSmsHistoryEntity entity = new KYwSendSmsHistoryEntity();
+		entity.setPhone(mobile);
+		entity.setSendType(Integer.valueOf(type));
+		entity.setSendTime(new Date());
+
+		// TODO
+		entity.setVerCode("111111");
+		sendSmsHistoryService.save(entity);
 
 		return R.ok();
 	}

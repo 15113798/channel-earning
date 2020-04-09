@@ -49,7 +49,7 @@ public class ShiroConfig {
         filters.put("oauth2", new OAuth2Filter());
         shiroFilter.setFilters(filters);
 
-       /* Map<String, String> filterMap = new LinkedHashMap<>();
+        Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/webjars/**", "anon");
         filterMap.put("/druid/**", "anon");
         filterMap.put("/app/**", "anon");
@@ -60,8 +60,11 @@ public class ShiroConfig {
         filterMap.put("/swagger-resources/**", "anon");
         filterMap.put("/captcha.jpg", "anon");
         filterMap.put("/aaa.txt", "anon");
+        filterMap.put("/sys/user/register","anon");
+        filterMap.put("/sys/user/verUserName","anon");
+        filterMap.put("/sys/user/sendNotice","anon");
         filterMap.put("/**", "oauth2");
-        shiroFilter.setFilterChainDefinitionMap(filterMap);*/
+        shiroFilter.setFilterChainDefinitionMap(filterMap);
 
         return shiroFilter;
     }
