@@ -14,6 +14,7 @@ import io.renren.modules.common.entity.ReNTbkItem;
 import io.renren.modules.common.service.TaoBaoService;
 import io.renren.modules.generator.entity.KYwMuneEntity;
 import io.renren.modules.generator.service.KYwMuneService;
+import io.renren.modules.homePage.entity.HomePageEntity;
 import io.renren.modules.homePage.service.HomePageService;
 import io.renren.modules.sys.controller.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,11 +42,26 @@ public class HomePageController extends AbstractController {
 
 
     @PostMapping("/getMenu")
-    public R getMenu(Integer type,Integer pid) {
-        //传入type，然后获取到该类型的所有菜单信息。并且按照排序
-        List<KYwMuneEntity> data = homePageService.queryMeue(type,pid);
+    public R getMenu(Integer type) {
 
-        return R.ok().put("data", data);
+        List<HomePageEntity>list = new ArrayList<>();
+
+        //根据类型和父级id获取对应的菜单信息
+        //先获取到所有的一级菜单
+        List<KYwMuneEntity> data = homePageService.queryMeue(type,0);
+        //根据顶级菜单获取到子级菜单
+        for(KYwMuneEntity parentEntity : data)
+        {
+            HomePageEntity entity = new HomePageEntity();
+            entity.setParentEntity(parentEntity);
+            Integer parentId = parentEntity.getId();
+            List<KYwMuneEntity> childList = homePageService.queryMeue(type,parentId);
+            entity.setChildList(childList);
+
+            list.add(entity);
+        }
+
+        return R.ok().put("data", list);
     }
 
 	

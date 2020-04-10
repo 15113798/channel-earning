@@ -160,11 +160,6 @@ paths:
           in: query
           type: integer
           required: true
-        - name: pid
-          description: 父级id，顶级用0
-          in: query
-          type: integer
-          required: true
       responses:
         '200':
           schema:
