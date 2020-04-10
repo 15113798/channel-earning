@@ -195,22 +195,6 @@ paths:
       summary: 获取品牌分类列表
       produces:
         - application/json
-      parameters:
-        - name: page
-          description: 页码
-          in: query
-          type: integer
-          required: true
-        - name: limit
-          description: 每页条数
-          in: query
-          type: integer
-          required: true
-        - name: is_recommend
-          description: 是否推荐 1是 2否（商品库中显示品牌分类列表的时候用1，其余的所有列表用2）
-          in: query
-          type: integer
-          required: true
       responses:
         '200':
           schema:

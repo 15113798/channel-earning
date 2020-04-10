@@ -67,6 +67,7 @@ public class ShiroConfig {
         filterMap.put("/sys/user/resetPassword","anon");
         filterMap.put("/homePage/getMenu","anon");
         filterMap.put("/product/category/getColumn","anon");
+        filterMap.put("/product/brand/getBrand","anon");
 
 
         filterMap.put("/**", "oauth2");

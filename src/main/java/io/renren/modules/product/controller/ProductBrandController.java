@@ -40,13 +40,12 @@ public class ProductBrandController extends AbstractController {
 
 
     @PostMapping("/getBrand")
-    public R getColumn(Integer page,Integer limit,Integer is_recommend) {
+    public R getColumn() {
         Map<String,Object> map  =new HashMap<>();
-        map.put("page",page);
-        map.put("limit",limit);
-        map.put("is_recommend",is_recommend);
-        PageUtils data = service.queryPage(map);
-        return R.ok().put("data", data);
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.orderByDesc("create_time");
+        List<KYwBrandEntity>list = service.list(wrapper);
+        return R.ok().put("data", list);
     }
 
 	
