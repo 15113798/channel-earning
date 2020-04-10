@@ -12,10 +12,8 @@
     </resultMap>
 
 
-    <select id="listByParentId"  resultMap="kYwProductCategoryMap">
-
-        select * from k_yw_product_category t where t.parentId = #{parentId}  order by sort desc;
-
+    <select id="listByParentId"  resultMap="kYwProductCategoryMap" parameterType="java.lang.Integer">
+        select * from k_yw_product_category t where t.parent_id = #{parentId}  order by sort asc;
     </select>
 
 
