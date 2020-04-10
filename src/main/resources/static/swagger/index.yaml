@@ -1541,6 +1541,10 @@ definitions:
       newPassword:
         description: 新密码
         type: string
+      ver_code:
+        description: 验证码
+        type: string
+
 
 
   HPOperateDataEntity:

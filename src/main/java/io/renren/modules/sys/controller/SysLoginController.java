@@ -144,8 +144,18 @@ public class SysLoginController extends AbstractController {
 
 	@PostMapping("/sys/user/resetPassword")
 	public R password(@RequestBody PasswordForm form){
+		String mobile = form.getMobile();
+		String ver_code = form.getVer_code();
 		Assert.isBlank(form.getMobile(), "用户电话不为能空");
+		Assert.isBlank(form.getPassword(), "原密码不能为空");
 		Assert.isBlank(form.getNewPassword(), "新密码不为能空");
+		Assert.isBlank(form.getVer_code(), "验证码不为能空");
+
+		// TODO: 2020/3/18 校验验证码
+		boolean var_bool = NoticeUtil.checkVerCode(mobile,ver_code, NoticeTypeEnum.Reset_Password.getCode());
+		if(!var_bool){
+			return R.error("验证码不正确，请重新输入");
+		}
 
 		//拿到电话号码获取到用户的基本信息
 		SysUserEntity entity = sysUserService.queryByUserName(form.getMobile());
@@ -155,6 +165,7 @@ public class SysLoginController extends AbstractController {
 		String password = new Sha256Hash(form.getPassword(), entity.getSalt()).toHex();
 		//sha256加密
 		String newPassword = new Sha256Hash(form.getNewPassword(), entity.getSalt()).toHex();
+
 
 		//更新密码
 		boolean flag = sysUserService.updatePassword(entity.getUserId(), password, newPassword);
@@ -177,7 +188,11 @@ public class SysLoginController extends AbstractController {
 		entity.setSendTime(new Date());
 
 		// TODO
-		entity.setVerCode("111111");
+		if(type.equals("1")){
+			entity.setVerCode("111111");
+		}else{
+			entity.setVerCode("222222");
+		}
 		sendSmsHistoryService.save(entity);
 
 		return R.ok();

@@ -27,5 +27,7 @@ public class PasswordForm {
      * 新密码
      */
     private String newPassword;
+    //验证码
+    private String ver_code;
 
 }
