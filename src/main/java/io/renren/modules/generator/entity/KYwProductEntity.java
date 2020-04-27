@@ -32,6 +32,9 @@ public class KYwProductEntity implements Serializable {
 	 * 商品目录id
 	 */
 	private String categoryId;
+	//品牌id
+	private String brandId;
+
 	/**
 	 * 店铺id
 	 */

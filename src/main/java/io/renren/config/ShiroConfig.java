@@ -50,7 +50,7 @@ public class ShiroConfig {
         shiroFilter.setFilters(filters);
 
         Map<String, String> filterMap = new LinkedHashMap<>();
-        filterMap.put("/webjars/**", "anon");
+        /*filterMap.put("/webjars/**", "anon");
         filterMap.put("/druid/**", "anon");
         filterMap.put("/app/**", "anon");
         filterMap.put("/sys/login", "anon");
@@ -68,9 +68,10 @@ public class ShiroConfig {
         filterMap.put("/homePage/getMenu","anon");
         filterMap.put("/product/category/getColumn","anon");
         filterMap.put("/product/brand/getBrand","anon");
+        filterMap.put("/product/getSelectStoreList","anon");
 
 
-        filterMap.put("/**", "oauth2");
+        filterMap.put("/**", "oauth2");*/
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
         return shiroFilter;

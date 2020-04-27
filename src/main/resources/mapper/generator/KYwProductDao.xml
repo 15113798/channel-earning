@@ -9,6 +9,7 @@
         <result property="name" column="name"/>
         <result property="categoryId" column="category_id"/>
         <result property="shopId" column="shop_id"/>
+        <result property="brandId" column="brandId"/>
         <result property="shopName" column="shop_name"/>
         <result property="yongjinTypeId" column="yongjin_type_id"/>
         <result property="publicUserId" column="public_user_id"/>
